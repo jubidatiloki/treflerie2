@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_param"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/l_param_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:text=" "
+        android:textSize="25dp" />
+
+
+
+    <TextView
+        android:id="@+id/l_param_telServeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/l_param_nom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:textColor="@color/black"
+        android:text="nummero serveur"
+        android:textSize="25dp" />
+
+
+    <TextView
+        android:id="@+id/l_param_montantMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/l_param_telServeur"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:textColor="@color/black"
+        android:text=""
+        android:textSize="25dp" />
+
+
+    <Button
+        android:id="@+id/b_param_modifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="modifier"
+        android:textSize="25dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

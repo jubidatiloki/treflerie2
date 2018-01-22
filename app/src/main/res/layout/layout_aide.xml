@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:id="@+id/aide_fweb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/icon_web"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_icon_web"/>
+
+    <TextView
+        android:id="@+id/aide_site"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@id/icon_web"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="65dp"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:text="site officiel La Trèflerie"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/aide_ffacebook"
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/icon_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_icon_facebook"/>
+
+        <TextView
+            android:id="@+id/aide_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@id/icon_facebook"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="65dp"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:text="facebook La Trèflerie"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/aide_fmail"
+        android:layout_marginTop="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/icon_mail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_icon_mail"/>
+
+        <TextView
+            android:id="@+id/aide_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@id/icon_mail"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="65dp"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:text="Contactez le support"/>
+    </FrameLayout>
+
+</RelativeLayout>
