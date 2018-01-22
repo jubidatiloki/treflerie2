@@ -37,20 +37,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_historique, parent, false);
-
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_historique, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Transaction transaction = transactionsList.get(position);
-        holder.date.setText(transaction.getDate());
-        if(transaction.getReception() == 0) {
-            holder.interlocuteur.setText("recu de " + transaction.getInterlocuteur());
+        holder.date.setText("Le " + transaction.getDate());
+        if(transaction.getReception() == 1) {
+            holder.interlocuteur.setText("Recu du compte n°" + transaction.getInterlocuteur());
         }else{
-            holder.interlocuteur.setText("envoyé à " + transaction.getInterlocuteur());
+            holder.interlocuteur.setText("Envoyé au compte n°" + transaction.getInterlocuteur());
         }
         holder.montant.setText(Double.toString(transaction.getMontant()) + " Trèfles");
     }

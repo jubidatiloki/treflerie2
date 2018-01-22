@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 public class TransactionManager {
 
-    private static final int VERSION_BDD = 1;
+    private static final int VERSION_BDD = 2;
     private static final String NOM_BDD = "treflerie.db";
 
     private static final String TABLE_TRANSACTION = "table_transactions";

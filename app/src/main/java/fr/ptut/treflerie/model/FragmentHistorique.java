@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,38 +30,41 @@ public class FragmentHistorique extends Fragment{
     private RecyclerView recyclerView;
     private TransactionAdapter transactionAdapter;
     private TransactionManager transactionManager;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.layout_historique, container, false);
-        transactionManager = new TransactionManager(myView.getContext());
+        transactionManager = new TransactionManager(this.getActivity().getBaseContext());
         transactionManager.open();
 
         recyclerView = myView.findViewById(R.id.recycler_view_transaction);
-
-        transactionAdapter = new TransactionAdapter(transactionsList);
-
         recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+        recyclerView.setLayoutManager(layoutManager);
+        transactionAdapter = new TransactionAdapter(transactionsList);
+        recyclerView.setAdapter(transactionAdapter);
+
 
         // vertical RecyclerView
         // keep movie_list_row.xml width to `match_parent`
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(myView.getContext());
+        //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
 
         // horizontal RecyclerView
         // keep movie_list_row.xml width to `wrap_content`
-        //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        //RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(getActivity().getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        recyclerView.setLayoutManager(mLayoutManager);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
 
         // adding inbuilt divider line
         recyclerView.addItemDecoration(new DividerItemDecoration(myView.getContext(), LinearLayoutManager.VERTICAL));
 
         // adding custom divider line with padding 16dp
-        recyclerView.addItemDecoration(new MyDividerItemDecoration(myView.getContext(), LinearLayoutManager.HORIZONTAL, 8));
+        //recyclerView.addItemDecoration(new MyDividerItemDecoration(myView.getContext(), LinearLayoutManager.HORIZONTAL, 8));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setAdapter(transactionAdapter);
+
 
         prepareTransactionData();
 
@@ -69,13 +73,11 @@ public class FragmentHistorique extends Fragment{
     }
 
     private void prepareTransactionData() {
-        for(int i=0; i<transactionManager.nombreDeLigne(); i++){
-            transactionsList.add(transactionManager.getTransactionById(i));
+        Transaction transaction;
+        for(int i=transactionManager.nombreDeLigne()-1; i>0; i--){
+            transaction = transactionManager.getTransactionById(i);
+            transactionsList.add(transaction);
         }
-
-        // notify adapter about data set changes
-        // so that it will render the list with new data
-        transactionAdapter.notifyDataSetChanged();
     }
 
 }

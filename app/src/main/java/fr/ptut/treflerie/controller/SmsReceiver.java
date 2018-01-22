@@ -92,6 +92,11 @@ public class SmsReceiver extends BroadcastReceiver {
                         // recap de l'envoi qui vient d'etre effectué
                         // Donné a Reveillere Pierrick (35):1,33 T
                         else if(estUnEnvoi()){
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
+                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1]), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 0, currentDateandTime.toString());
+                            transactionManager.insertTransaction(transaction);
+
                         }
 
                         //msg type quand on recoit des sous:
@@ -99,9 +104,8 @@ public class SmsReceiver extends BroadcastReceiver {
                         else if (estUnRecu()) {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                             String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
-                            Toast.makeText(context, "date: " + currentDateandTime, Toast.LENGTH_SHORT).show();
-                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[5]), phoneNumber, 0, currentDateandTime.toString());
-                            Toast.makeText(context, transaction.toString(), Toast.LENGTH_SHORT).show();
+                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1].replace("T", "")), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 1, currentDateandTime.toString());
+                            transactionManager.insertTransaction(transaction);
                         }
                     }
                 }

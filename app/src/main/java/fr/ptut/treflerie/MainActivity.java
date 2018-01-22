@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else{
 
 
-            getSupportActionBar().setTitle("solde:" + parametreManager.getParametre().getSolde() + "T");
+            getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + "T");
 
             titleInit.setVisibility(View.INVISIBLE);
             labelNumCompte.setVisibility(View.INVISIBLE);
