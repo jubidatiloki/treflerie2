@@ -18,9 +18,14 @@
             android:title="@string/nav_derniere" />
         <item
             android:id="@+id/nav_mois"
-            android:icon="@drawable/ic_icon_recap"
+            android:icon="@drawable/ic_icon_mois"
             android:textColor="@color/black"
             android:title="@string/nav_mois" />
+        <item
+            android:id="@+id/nav_historique"
+            android:icon="@drawable/ic_icon_mois"
+            android:textColor="@color/black"
+            android:title="@string/nav_historique" />
         <item
             android:id="@+id/nav_nouvelle"
             android:icon="@drawable/ic_icon_transaction"

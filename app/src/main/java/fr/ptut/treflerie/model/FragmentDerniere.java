@@ -32,7 +32,7 @@ public class FragmentDerniere extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.layout_derniere, container, false);
-        new SmsSender(Configuration.SMS_DERNIERE);
+        new SmsSender(Configuration.SMS_DERNIERE, myView.getContext());
         monLabel = myView.findViewById(R.id.derniere_label);
         maDate = myView.findViewById(R.id.derniere_date);
         monDest = myView.findViewById(R.id.derniere_dest);

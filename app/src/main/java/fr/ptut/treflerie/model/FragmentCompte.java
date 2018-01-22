@@ -37,7 +37,7 @@ public class FragmentCompte extends Fragment{
         Parametre param = parametreManager.getParametre();
         nom.setText(param.getNom());
         solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
-        new SmsSender(Configuration.SMS_SOLDE);
+        new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
 
         bactualiser = myView.findViewById(R.id.compte_actualiser);
         bactualiser.setClickable(true);

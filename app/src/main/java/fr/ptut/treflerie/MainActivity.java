@@ -35,12 +35,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText formMontantMax;
     private Button benregistrer;
     private Message message;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setLogo(R.drawable.icon_navbar);
 
@@ -81,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
          //si pas premiere connexion
         }else{
+
+
+            getSupportActionBar().setTitle("solde:" + parametreManager.getParametre().getSolde() + "T");
+
             titleInit.setVisibility(View.INVISIBLE);
             labelNumCompte.setVisibility(View.INVISIBLE);
             formNumCompte.setVisibility(View.INVISIBLE);
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 String telServeur = formTelServeur.getText().toString();
                 if(telServeur.equals("")){
-                    telServeur = Configuration.TEL_PIERRICK;
+                    telServeur = Configuration.TEL_SERVEUR_DEFAUT;
                 }
                 double montantMax = 0;
                 if(!formMontantMax.getText().toString().equals("")) {
@@ -185,16 +190,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        /*
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -210,7 +217,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentDerniere()).commit();
             } else if (id == R.id.nav_mois) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentMois()).commit();
-            } else if (id == R.id.nav_nouvelle) {
+            }else if (id == R.id.nav_historique) {
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentHistorique()).commit();
+            }else if (id == R.id.nav_nouvelle) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentNouvelle()).commit();
             } else if (id == R.id.nav_compte) {
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();

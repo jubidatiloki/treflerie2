@@ -15,6 +15,8 @@ import fr.ptut.treflerie.database.Message;
 import fr.ptut.treflerie.database.MessageManager;
 import fr.ptut.treflerie.database.Parametre;
 import fr.ptut.treflerie.database.ParametreManager;
+import fr.ptut.treflerie.database.Transaction;
+import fr.ptut.treflerie.database.TransactionManager;
 
 /**
  * Created by benja on 14/12/2017.
@@ -26,7 +28,9 @@ public class SmsReceiver extends BroadcastReceiver {
     private String[] liste;
     private MessageManager messageManager;
     private ParametreManager parametreManager;
+    private TransactionManager transactionManager;
     private Message msg;
+    private String telServeur;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -34,6 +38,8 @@ public class SmsReceiver extends BroadcastReceiver {
         if (intent.getAction().equals(ACTION_RECEIVE_SMS)){
             Bundle pudsBundle = intent.getExtras();
             Bundle bundle = intent.getExtras();
+            parametreManager = new ParametreManager(context);
+            parametreManager.open();
             if (bundle != null) {
                 Object[] pdus = (Object[]) pudsBundle.get("pdus");
                 final SmsMessage[] messages = new SmsMessage[pdus.length];
@@ -44,13 +50,13 @@ public class SmsReceiver extends BroadcastReceiver {
                     final String messageBody = messages[0].getMessageBody();
                     messageBody.replace("é", "e");
                     final String phoneNumber = messages[0].getDisplayOriginatingAddress();
-                    if(phoneNumber.equals(Configuration.TEL_SERVEUR_DEFAUT)) {
+                    if(phoneNumber.equals(parametreManager.getParametre().getTelServeur())) {
                         liste = messageBody.split(" ");
 
                         messageManager = new MessageManager(context);
-                        parametreManager = new ParametreManager(context);
                         messageManager.open();
-                        parametreManager.open();
+                        transactionManager = new TransactionManager(context);
+                        transactionManager.open();
 
 
                         //consulter son solde
@@ -94,8 +100,8 @@ public class SmsReceiver extends BroadcastReceiver {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                             String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
                             Toast.makeText(context, "date: " + currentDateandTime, Toast.LENGTH_SHORT).show();
-                            //Transaction transaction = new Transaction(Double.parseDouble(liste[5]), Integer.parseInt(phoneNumber), 0, currentTime.toString());
-                            //Toast.makeText(context, transaction.toString(), Toast.LENGTH_SHORT).show();
+                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[5]), phoneNumber, 0, currentDateandTime.toString());
+                            Toast.makeText(context, transaction.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

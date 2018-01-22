@@ -14,6 +14,7 @@ import android.widget.Toast;
 import fr.ptut.treflerie.R;
 import fr.ptut.treflerie.controller.Configuration;
 import fr.ptut.treflerie.controller.DoneOnEditorActionListener;
+import fr.ptut.treflerie.database.ParametreManager;
 
 /**
  * Created by benja on 07/12/2017.
@@ -23,6 +24,7 @@ public class FragmentNouvelle extends Fragment{
 
     View myView;
     private Button benvoyer;
+    private ParametreManager parametreManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,12 +35,15 @@ public class FragmentNouvelle extends Fragment{
         formDest.setOnEditorActionListener(new DoneOnEditorActionListener());
         formMontant.setOnEditorActionListener(new DoneOnEditorActionListener());
 
+        parametreManager = new ParametreManager(myView.getContext());
+        parametreManager.open();
+
         benvoyer = myView.findViewById(R.id.nouvelle_envoyer);
         benvoyer.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!formDest.getText().toString().equals("") && !formMontant.getText().toString().equals("")) {
-                    SmsManager.getDefault().sendTextMessage(Configuration.TEL_SERVEUR_DEFAUT, null, formMontant.getText().toString()+"/"+formDest.getText().toString(), null, null);
+                    SmsManager.getDefault().sendTextMessage(parametreManager.getParametre().getTelServeur(), null, formMontant.getText().toString()+"/"+formDest.getText().toString(), null, null);
                     Toast.makeText(getActivity().getBaseContext(), "transaction effectuée", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getActivity().getBaseContext(), "Les champs destinataire et montant doivent être remplis.", Toast.LENGTH_SHORT).show();
