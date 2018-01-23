@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.ptut.treflerie.controller.Configuration;
+import fr.ptut.treflerie.controller.JabberReceiver;
 import fr.ptut.treflerie.database.*;
 import fr.ptut.treflerie.model.*;
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},1);
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET},1);
 
 
 
@@ -92,6 +94,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
         }
+
+
+
+        //---------------------------------------//
+        JabberReceiver jr = new JabberReceiver(this.getApplicationContext(), this.getIntent());
+        jr.start();
+        //---------------------------------------//
 
     }
 

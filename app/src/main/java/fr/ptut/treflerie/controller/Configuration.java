@@ -12,6 +12,7 @@ public class Configuration {
     public static final String SMS_SOLDE = "S?";
     public static final String SMS_DERNIERE = "D?";
     public static final String SMS_MOIS = "V?";
+    public static final String XMPP_DOMAIN_DEFAUT = "mmtux.fr";
     public static final double MONTANT_MAX_DEFAUT = 250.0;
     public static final String NOM_DEFAUT = "Nouveau compte";
     public static final double SOLDE_DEFAUT = 0.0;
