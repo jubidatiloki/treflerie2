@@ -78,6 +78,8 @@ public class FragmentHistorique extends Fragment{
             transaction = transactionManager.getTransactionById(i);
             transactionsList.add(transaction);
         }
+        transactionAdapter.notifyDataSetChanged();
+
     }
 
 }

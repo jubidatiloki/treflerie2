@@ -51,7 +51,7 @@ public class FragmentDerniere extends Fragment{
             }
         });
 
-        
+
         return myView;
     }
 

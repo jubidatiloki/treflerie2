@@ -44,7 +44,7 @@ public class FragmentNouvelle extends Fragment{
             public void onClick(View v) {
                 if(!formDest.getText().toString().equals("") && !formMontant.getText().toString().equals("")) {
                     SmsManager.getDefault().sendTextMessage(parametreManager.getParametre().getTelServeur(), null, formMontant.getText().toString()+"/"+formDest.getText().toString(), null, null);
-                    Toast.makeText(getActivity().getBaseContext(), "transaction effectuée", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getBaseContext(), "Transaction en cours", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getActivity().getBaseContext(), "Les champs destinataire et montant doivent être remplis.", Toast.LENGTH_SHORT).show();
                 }

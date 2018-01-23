@@ -46,11 +46,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionsList.get(position);
         holder.date.setText("Le " + transaction.getDate());
         if(transaction.getReception() == 1) {
-            holder.interlocuteur.setText("Recu du compte n°" + transaction.getInterlocuteur());
+            holder.interlocuteur.setText("Reçu du compte n°" + transaction.getInterlocuteur());
         }else{
             holder.interlocuteur.setText("Envoyé au compte n°" + transaction.getInterlocuteur());
         }
-        holder.montant.setText(Double.toString(transaction.getMontant()) + " Trèfles");
+        holder.montant.setText("Montant: " + Double.toString(transaction.getMontant()) + " Trèfles");
     }
 
     @Override

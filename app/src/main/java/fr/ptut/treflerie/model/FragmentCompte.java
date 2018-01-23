@@ -32,23 +32,27 @@ public class FragmentCompte extends Fragment{
         messageManager = new MessageManager(this.getActivity().getBaseContext());
         parametreManager.open();
         messageManager.open();
+
         TextView nom = myView.findViewById(R.id.compte_nom);
         solde = myView.findViewById(R.id.compte_solde);
-        Parametre param = parametreManager.getParametre();
-        nom.setText(param.getNom());
-        solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
-        new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
 
-        bactualiser = myView.findViewById(R.id.compte_actualiser);
-        bactualiser.setClickable(true);
-        bactualiser.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                paramSolde();
-            }
-        });
+        if(parametreManager.nombreDeLigne() != 1 ){
+            initialisation();
+        }else{
+            Parametre param = parametreManager.getParametre();
+            nom.setText(param.getNom());
+            solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
+            new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
 
-
+            bactualiser = myView.findViewById(R.id.compte_actualiser);
+            bactualiser.setClickable(true);
+            bactualiser.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    paramSolde();
+                }
+            });
+        }
         return myView;
     }
 
@@ -60,6 +64,10 @@ public class FragmentCompte extends Fragment{
         }else{
             solde.setText(montant + "Trèfle");
         }
+    }
+
+    public void initialisation(){
+        Toast.makeText(myView.getContext(), "INITIALISATION", Toast.LENGTH_SHORT).show();
     }
 
 }

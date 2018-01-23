@@ -59,7 +59,6 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //on créé la table à partir de la requête écrite dans la variable CREATE_PARAMETRE
-
         db.execSQL(CREATE_PARAMETRE);
         db.execSQL(CREATE_MESSAGE);
         db.execSQL(CREATE_TRANSACTION);

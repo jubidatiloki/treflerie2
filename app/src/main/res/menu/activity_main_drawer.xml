@@ -23,7 +23,7 @@
             android:title="@string/nav_mois" />
         <item
             android:id="@+id/nav_historique"
-            android:icon="@drawable/ic_icon_mois"
+            android:icon="@drawable/ic_icon_historique"
             android:textColor="@color/black"
             android:title="@string/nav_historique" />
         <item

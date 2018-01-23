@@ -94,9 +94,10 @@ public class SmsReceiver extends BroadcastReceiver {
                         else if(estUnEnvoi()){
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                             String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
-                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1]), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 0, currentDateandTime.toString());
+                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1].replace(",",".")), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 0, currentDateandTime.toString());
                             transactionManager.insertTransaction(transaction);
-
+                            Toast.makeText(context, "Transaction effectuée", Toast.LENGTH_SHORT).show();
+                            new SmsSender(Configuration.SMS_SOLDE, context);
                         }
 
                         //msg type quand on recoit des sous:
@@ -104,7 +105,7 @@ public class SmsReceiver extends BroadcastReceiver {
                         else if (estUnRecu()) {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                             String currentDateandTime = sdf.format(Calendar.getInstance().getTime());
-                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1].replace("T", "")), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 1, currentDateandTime.toString());
+                            Transaction transaction = new Transaction( transactionManager.nombreDeLigne(),Double.parseDouble(liste[4].replace(":", " ").split(" ")[1].replace("T", "").replace(",",".")), liste[4].replace(":", " ").split(" ")[0].replaceAll("[()]", ""), 1, currentDateandTime.toString());
                             transactionManager.insertTransaction(transaction);
                         }
                     }
