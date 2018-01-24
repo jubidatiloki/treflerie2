@@ -23,11 +23,14 @@ import java.io.IOException;
  * Created by pierrick on 1/22/18.
  */
 
-public class JabberReceiver extends Thread {
+public class JabberReceiver extends Thread implements IncomingChatMessageListener{
 
     private Context context;
     private Intent intent;
     private Receiver receiver;
+    private AbstractXMPPConnection connection;
+
+    private String msgToSend;
 
     public JabberReceiver(Context context, Intent intent) {
         this.context = context;
@@ -36,6 +39,66 @@ public class JabberReceiver extends Thread {
     }
 
     public void run() {
+        Chat chat = null;
+        int tries = 3;// Nombre d'essai de connexion
+
+        // On essaye de se connecter
+        while(chat == null && tries > 0) {
+            tries--;
+            chat = connect();
+
+            if(chat == null) {
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Si échec de connexion
+        if ( chat == null)
+            return;
+
+        // On envoie le message
+        while (true)
+            sendNow(chat);
+
+    }
+
+    @Override
+    public void newIncomingMessage(EntityBareJid from, Message message, Chat chat) {
+        String messageBody = message.getBody();
+        System.out.println(messageBody);
+        Toast.makeText(context, messageBody, Toast.LENGTH_LONG).show();
+        receiver.onReceive(context, intent, messageBody);
+    }
+
+    /*
+    Définie la string a envoyer
+    seule cette fonction est accessible
+    sendNow() est appellée automatiquement
+    */
+    public void send(String message) {
+        this.msgToSend = message;
+    }
+
+    private void sendNow(Chat chat) {
+        if(this.msgToSend != null) {
+            try {
+                chat.send(this.msgToSend);
+                this.msgToSend = null;
+            } catch (SmackException.NotConnectedException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Chat connect() {
+        System.out.println("Connection...");
+
         try {
             final XMPPTCPConnectionConfiguration config = XMPPTCPConnectionConfiguration.builder()
                     .setUsernameAndPassword("rpierrick", "soleil")
@@ -43,34 +106,29 @@ public class JabberReceiver extends Thread {
                     .setPort(5222)
                     .build();
 
-            AbstractXMPPConnection connection = new XMPPTCPConnection(config);
-            connection.connect().login();
+            this.connection = new XMPPTCPConnection(config);
+            this.connection.connect().login();
 
-            // Assume we've created an XMPPConnection name "connection"._
+            // Assume we've created an XMPPConnection name "connection"
             ChatManager chatManager = ChatManager.getInstanceFor(connection);
-            chatManager.addIncomingListener(new IncomingChatMessageListener() {
-                @Override
-                public void newIncomingMessage(EntityBareJid from, Message message, Chat chat) {
-                    newMessage(message);
-                }
-            });
+            chatManager.addIncomingListener(this); // ajout listener
             EntityBareJid jid = JidCreate.entityBareFrom("volet@mmtux.fr");
             Chat chat = chatManager.chatWith(jid);
             chat.send("S?");
+
+            return chat;
         } catch (IOException e1) {
             e1.printStackTrace();
+            return null;
         } catch (InterruptedException e1) {
             e1.printStackTrace();
+            return null;
         } catch (XMPPException e1) {
             e1.printStackTrace();
+            return null;
         } catch (SmackException e1) {
             e1.printStackTrace();
+            return null;
         }
-    }
-
-    public void newMessage(Message message) {
-        String messageBody = message.getBody();
-        Toast.makeText(context, messageBody, Toast.LENGTH_LONG).show();
-        receiver.onReceive(context, intent, messageBody);
     }
 }

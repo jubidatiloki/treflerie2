@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //---------------------------------------//
         JabberReceiver jr = new JabberReceiver(this.getApplicationContext(), this.getIntent());
         jr.start();
+       // jr.send("V?");
         //---------------------------------------//
 
     }
