@@ -11,12 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import fr.ptut.treflerie.MainActivity;
 import fr.ptut.treflerie.database.Message;
 import fr.ptut.treflerie.database.MessageManager;
 import fr.ptut.treflerie.database.Parametre;
 import fr.ptut.treflerie.database.ParametreManager;
 import fr.ptut.treflerie.database.Transaction;
 import fr.ptut.treflerie.database.TransactionManager;
+import fr.ptut.treflerie.model.FragmentNouvelle;
 
 /**
  * Created by benja on 14/12/2017.
@@ -98,6 +100,10 @@ public class SmsReceiver extends BroadcastReceiver {
                             transactionManager.insertTransaction(transaction);
                             Toast.makeText(context, "Transaction effectuée", Toast.LENGTH_SHORT).show();
                             new SmsSender(Configuration.SMS_SOLDE, context);
+                            FragmentNouvelle fragmentNouvelle = new FragmentNouvelle();
+                            fragmentNouvelle.getTimer().onFinish();
+                            Toast.makeText(new MainActivity(),"La transaction a bien été effectuée.", Toast.LENGTH_LONG).show();
+
                         }
 
                         //msg type quand on recoit des sous:

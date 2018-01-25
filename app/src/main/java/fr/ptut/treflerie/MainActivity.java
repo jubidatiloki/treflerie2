@@ -1,6 +1,7 @@
 package fr.ptut.treflerie;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -139,6 +140,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return false;
         }
     }
+
+    /* This method will be invoked when CountDownTimer finish. */
+    public void onCountDownTimerFinishEvent()
+    {
+
+    }
+
+    /* This method will be invoked when CountDownTimer tick event happened.*/
+    public void onCountDownTimerTickEvent(long millisUntilFinished)
+    {
+        // Calculate left seconds.
+        long leftSeconds = millisUntilFinished / 1000;
+
+        String timer = "Temps restant " + leftSeconds + " (s)";
+        System.out.println("TIMER : " + leftSeconds);
+
+        if(leftSeconds==1) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Problème rencontré");
+            alertDialog.setMessage("Le serveur  est indisponible. Nous nous excusons pour la gêne occasionnée.");
+            alertDialog.show();
+        }
+
+        // Show left seconds in send button.
+        //Toast.makeText(this,timer,Toast.LENGTH_SHORT).show();
+    }
+
 
 
 }
