@@ -1,5 +1,6 @@
 package fr.ptut.treflerie.model;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
 
 /**
@@ -22,7 +25,8 @@ import fr.ptut.treflerie.R;
 
 public class FragmentAide extends Fragment{
 
-    View myView;
+    private View myView;
+    private ImageView infobulle;
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +60,15 @@ public class FragmentAide extends Fragment{
             }
         });
 
+        infobulle = myView.findViewById(R.id.aide_infobulle);
+
+        infobulle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentDialogPopup();
+                dialog.show(getFragmentManager(), "infobulle_aide");
+            }
+        });
+
         return myView;
     }
 
@@ -72,8 +85,8 @@ public class FragmentAide extends Fragment{
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Le problème rencontré est ..");
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "envoyer un mail avec"));
-            Log.i("mail envoyé", "");
+            startActivity(Intent.createChooser(emailIntent, "Envoyer un mail avec"));
+            Log.i("Mail envoyé", "");
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(myView.getContext(), "Il n'y a pas de client installé permettant l'envoi de mail.", Toast.LENGTH_SHORT).show();
         }

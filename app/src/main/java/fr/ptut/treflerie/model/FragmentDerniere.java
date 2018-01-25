@@ -1,5 +1,6 @@
 package fr.ptut.treflerie.model;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
 import fr.ptut.treflerie.controller.Configuration;
 import fr.ptut.treflerie.controller.SmsSender;
@@ -27,6 +30,7 @@ public class FragmentDerniere extends Fragment{
     private TextView monDest;
     private TextView monMontant;
     private MessageManager messageManager;
+    private ImageView infobulle;
     Button bactualiser;
 
     @Override
@@ -51,6 +55,14 @@ public class FragmentDerniere extends Fragment{
             }
         });
 
+        infobulle = myView.findViewById(R.id.derniere_infobulle);
+
+        infobulle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentDialogPopup();
+                dialog.show(getFragmentManager(), "infobulle_derniere");
+            }
+        });
 
         return myView;
     }
@@ -62,14 +74,14 @@ public class FragmentDerniere extends Fragment{
             //   date   numCompte    nom    prenom    montant    recu|pour
 
 
-            maDate.setText("le "+ date);
+            maDate.setText("Le "+ date);
             if(items[5].equals("recu")) {
-                monDest.setText("reçu de : " + items[2] + " " + items[3] + " (compte n°" + items[1] + ")");
+                monDest.setText("Reçu de : " + items[2] + " " + items[3] + " (compte n°" + items[1] + ")");
             }else{
-                monDest.setText("envoyé à : " + items[2] + " " + items[3] + " (compte n°" + items[1] + ")");
+                monDest.setText("Envoyé à : " + items[2] + " " + items[3] + " (compte n°" + items[1] + ")");
             }
 
-            monMontant.setText("le montant de " + items[4] + "Trèfles");
+            monMontant.setText("Le montant de " + items[4] + "Trèfles");
 
 
             monLabel.setVisibility(View.INVISIBLE);

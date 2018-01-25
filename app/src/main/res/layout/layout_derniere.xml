@@ -64,4 +64,15 @@
         android:drawableBottom="@drawable/ic_update"
         android:layout_marginBottom="50dp" />
 
+    <ImageView
+        android:id="@+id/derniere_infobulle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="30dp"
+        android:minHeight="30dp"
+        android:src="@drawable/ic_icon_infobulle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="13dp" />
+
 </RelativeLayout>

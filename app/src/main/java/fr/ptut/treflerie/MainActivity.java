@@ -1,6 +1,7 @@
 package fr.ptut.treflerie;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -117,25 +118,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getFragmentManager();
         if(parametreManager.nombreDeLigne() == 1) {
             if (id == R.id.nav_derniere) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentDerniere()).commit();
             } else if (id == R.id.nav_mois) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentMois()).commit();
             }else if (id == R.id.nav_historique) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentHistorique()).commit();
             }else if (id == R.id.nav_nouvelle) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentNouvelle()).commit();
             } else if (id == R.id.nav_compte) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
             } else if (id == R.id.nav_aide) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentAide()).commit();
             } else if (id == R.id.nav_parametre) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentParametre()).commit();
             }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -146,6 +147,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return false;
         }
     }
+
+    /* This method will be invoked when CountDownTimer finish. */
+    public void onCountDownTimerFinishEvent()
+    {
+
+    }
+
+    /* This method will be invoked when CountDownTimer tick event happened.*/
+    public void onCountDownTimerTickEvent(long millisUntilFinished)
+    {
+        // Calculate left seconds.
+        long leftSeconds = millisUntilFinished / 1000;
+
+        String timer = "Temps restant " + leftSeconds + " (s)";
+        System.out.println("TIMER : " + leftSeconds);
+
+        if(leftSeconds==1) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Problème rencontré");
+            alertDialog.setMessage("Le serveur  est indisponible. Nous nous excusons pour la gêne occasionnée.");
+            alertDialog.show();
+        }
+
+    }
+
 
 
 }

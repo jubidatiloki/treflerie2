@@ -1,5 +1,6 @@
 package fr.ptut.treflerie.model;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
 import fr.ptut.treflerie.controller.Configuration;
 import fr.ptut.treflerie.controller.SmsSender;
@@ -26,6 +29,7 @@ public class FragmentMois extends Fragment{
     private TextView lmoisRecette;
     private TextView lmoisDepense;
     private TextView lbilan;
+    private ImageView infobulle;
     Button bactualiser;
 
     @Override
@@ -49,6 +53,14 @@ public class FragmentMois extends Fragment{
             }
         });
 
+        infobulle = myView.findViewById(R.id.mois_infobulle);
+
+        infobulle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentDialogPopup();
+                dialog.show(getFragmentManager(), "infobulle_mois");
+            }
+        });
 
         return myView;
     }
@@ -63,6 +75,7 @@ public class FragmentMois extends Fragment{
             lmoisRecette.setText("Recettes : " + items[0] + " Trèfles");
             lmoisDepense.setText("Dépenses : " + items[1] + " Trèfles");
             Double bilan = Double.parseDouble(items[0].replace(",", ".")) - Double.parseDouble(items[1].replace(",","."));
+            bilan = (double)Math.round(bilan*100)/100;
             lbilan.setText("Bilan : " + Double.toString(bilan).replace(".",",") + " Trèfles");
         }
     }

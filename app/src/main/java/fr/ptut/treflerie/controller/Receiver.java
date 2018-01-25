@@ -7,10 +7,12 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import fr.ptut.treflerie.MainActivity;
 import fr.ptut.treflerie.database.Message;
 import fr.ptut.treflerie.database.MessageManager;
 import fr.ptut.treflerie.database.Parametre;
 import fr.ptut.treflerie.database.ParametreManager;
+import fr.ptut.treflerie.model.FragmentNouvelle;
 
 
 /**
@@ -65,6 +67,9 @@ public class Receiver {
         // recap de l'envoi qui vient d'etre effectué
         // Donné a Reveillere Pierrick (35):1,33 T
         else if(estUnEnvoi()){
+            FragmentNouvelle fragmentNouvelle = new FragmentNouvelle();
+            fragmentNouvelle.getTimer().onFinish();
+            Toast.makeText(new MainActivity(),"La transaction a bien été effectuée.", Toast.LENGTH_LONG).show();
         }
 
         //msg type quand on recoit des sous:

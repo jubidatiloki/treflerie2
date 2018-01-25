@@ -1,14 +1,19 @@
 package fr.ptut.treflerie.model;
 
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
 import fr.ptut.treflerie.controller.*;
 import fr.ptut.treflerie.database.*;
@@ -24,6 +29,8 @@ public class FragmentCompte extends Fragment{
     private MessageManager messageManager;
     private TextView solde;
     private Button bactualiser;
+    private TextView nom;
+    private ImageView infobulle;
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -33,33 +40,45 @@ public class FragmentCompte extends Fragment{
         parametreManager.open();
         messageManager.open();
 
-        TextView nom = myView.findViewById(R.id.compte_nom);
+        nom = myView.findViewById(R.id.compte_nom);
         solde = myView.findViewById(R.id.compte_solde);
+        infobulle = myView.findViewById(R.id.compte_infobulle);
+
+        infobulle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentDialogPopup();
+                dialog.show(getFragmentManager(), "infobulle_compte");
+            }
+        });
 
         if(parametreManager.nombreDeLigne() != 1 ){
             initialisation();
-        }else{
+        }else {
             Parametre param = parametreManager.getParametre();
             nom.setText(param.getNom());
-            if (messageManager.nombreDeLigne() > 0) {
-                solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
+
+            if(messageManager.nombreDeLigne()>0) {
+                solde.setText(messageManager.getMessageByTag("solde").getLibelle() + " Trèfles");
+            }else{
+                solde.setText("0 Trèfle");
             }
             new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
-
-            bactualiser = myView.findViewById(R.id.compte_actualiser);
-            bactualiser.setClickable(true);
-            bactualiser.setOnClickListener( new View.OnClickListener() {
+        }
+        bactualiser = myView.findViewById(R.id.compte_actualiser);
+        bactualiser.setClickable(true);
+        bactualiser.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     paramSolde();
                 }
             });
-        }
+
         return myView;
     }
 
     public void paramSolde(){
         if (messageManager.nombreDeLigne() > 0) {
+
             String[] items = messageManager.getMessageByTag("solde").getLibelle().split(" ");
             Double montant = Double.parseDouble(items[0].replace(",", "."));
             if (montant > 0) {
@@ -67,12 +86,18 @@ public class FragmentCompte extends Fragment{
             } else {
                 solde.setText(montant + "Trèfle");
             }
+
+        }else{
+            solde.setText("0 Trèfle");
         }
     }
 
     public void initialisation(){
-        Toast.makeText(myView.getContext(), "INITIALISATION", Toast.LENGTH_SHORT).show();
+
         parametreManager.insertParametre(new Parametre());
+        new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
+        nom.setText("Paramètrage du compte en cours, en attente du serveur");
+        nom.setTextSize(10);
     }
 
 }

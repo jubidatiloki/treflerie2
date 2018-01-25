@@ -29,6 +29,7 @@
         android:textSize="20dp"
         android:textColor="#222222"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_below="@id/date"/>
 
     <TextView
@@ -38,6 +39,7 @@
         android:textSize="20dp"
         android:textColor="#222222"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_below="@id/interlocuteur" />
 
 

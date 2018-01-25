@@ -44,8 +44,8 @@ public class SmsReceiver extends BroadcastReceiver {
                     final String phoneNumber = messages[0].getDisplayOriginatingAddress();
 
                     if(phoneNumber.equals(Configuration.TEL_SERVEUR_DEFAUT)) {
-
                         receiver.onReceive(context, intent, messageBody);
+
                     }
                 }
 
