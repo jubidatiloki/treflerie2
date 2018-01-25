@@ -1,5 +1,6 @@
 package fr.ptut.treflerie.model;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
 import fr.ptut.treflerie.controller.Configuration;
 import fr.ptut.treflerie.controller.DoneOnEditorActionListener;
@@ -25,6 +28,7 @@ public class FragmentNouvelle extends Fragment{
     View myView;
     private Button benvoyer;
     private ParametreManager parametreManager;
+    private ImageView infobulle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +41,15 @@ public class FragmentNouvelle extends Fragment{
 
         parametreManager = new ParametreManager(myView.getContext());
         parametreManager.open();
+
+        infobulle = myView.findViewById(R.id.nouvelle_infobulle);
+
+        infobulle.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentDialogPopup();
+                dialog.show(getFragmentManager(), "infobulle_nouvelle");
+            }
+        });
 
         benvoyer = myView.findViewById(R.id.nouvelle_envoyer);
         benvoyer.setOnClickListener( new View.OnClickListener() {

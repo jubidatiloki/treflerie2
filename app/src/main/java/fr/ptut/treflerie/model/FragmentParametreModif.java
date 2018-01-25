@@ -44,7 +44,7 @@ public class FragmentParametreModif extends Fragment{
         benregistrer.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 if(formTelServeur.getText().toString().equals("") || formMontantMax.getText().toString().equals("") || formNom.getText().toString().equals("")){
-                    Toast.makeText(myViewModif.getContext(), "les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(myViewModif.getContext(), "Les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
                 }
 
                 Parametre paramOrigine = parametreManager.getParametre();

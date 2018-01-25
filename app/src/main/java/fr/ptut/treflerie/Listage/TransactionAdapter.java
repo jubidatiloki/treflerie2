@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -44,7 +45,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Transaction transaction = transactionsList.get(position);
-        holder.date.setText("Le " + transaction.getDate());
+        String[] date = transaction.getDate().split(" ");
+        String newDate = "Le " + date[0] + " à " + date[1].split(":")[0] + "h" + date[1].split(":")[1];
+        holder.date.setText(newDate);
         if(transaction.getReception() == 1) {
             holder.interlocuteur.setText("Reçu du compte n°" + transaction.getInterlocuteur());
         }else{

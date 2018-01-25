@@ -39,6 +39,7 @@ public class FragmentHistorique extends Fragment{
         transactionManager = new TransactionManager(this.getActivity().getBaseContext());
         transactionManager.open();
 
+
         recyclerView = myView.findViewById(R.id.recycler_view_transaction);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity().getBaseContext());

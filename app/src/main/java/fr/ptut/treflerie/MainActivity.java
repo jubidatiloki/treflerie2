@@ -110,25 +110,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getFragmentManager();
         if(parametreManager.nombreDeLigne() == 1) {
             if (id == R.id.nav_derniere) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentDerniere()).commit();
             } else if (id == R.id.nav_mois) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentMois()).commit();
             }else if (id == R.id.nav_historique) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentHistorique()).commit();
             }else if (id == R.id.nav_nouvelle) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentNouvelle()).commit();
             } else if (id == R.id.nav_compte) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
             } else if (id == R.id.nav_aide) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentAide()).commit();
             } else if (id == R.id.nav_parametre) {
-                getSupportActionBar().setTitle(parametreManager.getParametre().getSolde() + " T");
+                getSupportActionBar().setTitle(parametreManager.getParametre().getNumCompte() + " : " + parametreManager.getParametre().getSolde() + " T");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentParametre()).commit();
             }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

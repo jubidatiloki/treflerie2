@@ -14,4 +14,12 @@
     <string name="nav_compte">Mon compte</string>
     <string name="nav_aide">Aide</string>
     <string name="nav_settings">Paramètres</string>
+
+
+    <string name="infobulle_aide">Il vous suffit de cliquer sur les liens ci-dessus afin de contacter le service d\'aide de la Trèflerie.</string>
+    <string name="infobulle_compte">Vous êtes sur la page de votre compte, vous pouvez y consulter votre solde, ainsi que modifier certains de vos paramètres.</string>
+    <string name="infobulle_derniere">Si vous n\'avez effectué aucune transaction, vous verrez un msg l\'indiquant. Sinon vous verrez la date, la personne ainsi que le montant échangé lors de votre dernière transaction.</string>
+    <string name="infobulle_mois">Vous pouvez consulter la balance des transactions effectuées lors des deux derniers mois. Vous pouvais également consulter les détails dans l\'historique des transactions effectué.</string>
+    <string name="infobulle_nouvelle">Prenez garde à posséder suffisamment de trèfles sur votre compte, avant de faire une transaction. De plus vous ne pouvez dépasser la limite de trèfles définie avec ce téléphone (250T par défaut).</string>
+    
 </resources>

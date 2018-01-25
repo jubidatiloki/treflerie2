@@ -35,9 +35,9 @@ public class FragmentParametre extends Fragment{
         ParametreManager parametreManager = new ParametreManager(this.getActivity().getBaseContext());
         parametreManager.open();
         Parametre param = parametreManager.getParametre();
-        labelNom.setText("nom d'utilisateur : " + param.getNom());
-        labelTelServeur.setText("numéro du serveur : " + param.getTelServeur());
-        labelMontantMax.setText("limite montant max par transaction : " + Double.toString(param.getMontantMax()) + " Trèfles");
+        labelNom.setText("Nom d'utilisateur : " + param.getNom());
+        labelTelServeur.setText("Numéro du serveur : " + param.getTelServeur());
+        labelMontantMax.setText("Limite montant max par transaction : " + Double.toString(param.getMontantMax()) + " Trèfles");
 
 
 
