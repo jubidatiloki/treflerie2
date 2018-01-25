@@ -1,92 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/gradient">
-
-
-    <FrameLayout
-        android:id="@+id/aide_fweb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/icon_web"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_icon_web"/>
+    android:background="@drawable/degrade_principal">
 
     <TextView
-        android:id="@+id/aide_site"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@id/icon_web"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="65dp"
-        android:textSize="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Aide"
         android:textColor="@color/black"
-        android:text="site officiel La Trèflerie"/>
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/aide_ffacebook"
-        android:layout_marginTop="150dp"
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/icon_facebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_icon_facebook"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Application réalisée par les étudiants de l'IUT du Limousin pour la Tréflerie - 2018"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/aide_facebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@id/icon_facebook"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="65dp"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:text="facebook La Trèflerie"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/aide_fmail"
-        android:layout_marginTop="300dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/icon_mail"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_icon_mail"/>
+        <LinearLayout
+            android:id="@+id/aide_fweb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/degrade_site"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
-        <TextView
-            android:id="@+id/aide_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@id/icon_mail"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="65dp"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:text="Contactez le support"/>
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/icon_web"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:src="@drawable/ic_icon_web" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/aide_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/icon_web"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:text="Site de La Trèflerie"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/aide_fmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/degrade_mail"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/icon_mail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:src="@drawable/ic_icon_mail" />
+
+            <TextView
+                android:id="@+id/aide_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/icon_mail"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:text="Contactez le support"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/aide_ffacebook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/degrade_facebook"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/icon_facebook"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:src="@drawable/ic_icon_facebook" />
+
+            <TextView
+                android:id="@+id/aide_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/icon_facebook"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:text="Facebook La Trèflerie"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

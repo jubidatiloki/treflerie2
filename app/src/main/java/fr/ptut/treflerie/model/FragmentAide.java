@@ -5,11 +5,13 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import fr.ptut.treflerie.R;
@@ -25,7 +27,7 @@ public class FragmentAide extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.layout_aide, container, false);
-        FrameLayout web = myView.findViewById(R.id.aide_fweb);
+        LinearLayout web = myView.findViewById(R.id.aide_fweb);
         web.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +38,7 @@ public class FragmentAide extends Fragment{
             }
         });
 
-        FrameLayout fb = myView.findViewById(R.id.aide_ffacebook);
+        LinearLayout fb = myView.findViewById(R.id.aide_ffacebook);
         fb.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +48,7 @@ public class FragmentAide extends Fragment{
                 startActivity(intent);
             }
         });
-        FrameLayout mail = myView.findViewById(R.id.aide_fmail);
+        LinearLayout mail = myView.findViewById(R.id.aide_fmail);
         mail.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
