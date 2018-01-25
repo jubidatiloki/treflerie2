@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class ParametreManager {
 
-    private static final int VERSION_BDD = 1;
+    private static final int VERSION_BDD = 2;
     private static final String NOM_BDD = "treflerie.db";
 
     private static final String TABLE_PARAMETRES = "table_parametres";

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MessageManager {
 
-    private static final int VERSION_BDD = 1;
+    private static final int VERSION_BDD = 2;
     private static final String NOM_BDD = "treflerie.db";
 
     private static final String TABLE_MESSAGE = "table_message";

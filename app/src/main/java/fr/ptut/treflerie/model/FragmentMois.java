@@ -34,7 +34,7 @@ public class FragmentMois extends Fragment{
         myView = inflater.inflate(R.layout.layout_mois, container, false);
         messageManager = new MessageManager(getActivity().getBaseContext());
         messageManager.open();
-        new SmsSender(Configuration.SMS_MOIS);
+        new SmsSender(Configuration.SMS_MOIS, myView.getContext());
         lmoisRecette = myView.findViewById(R.id.mois_recette);
         lmoisDepense = myView.findViewById(R.id.mois_depense);
         lbilan = myView.findViewById(R.id.mois_bilan);

@@ -34,6 +34,24 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
             + COL_TAG + " TEXT, "
             + COL_LIBELLE + " TEXT );";
 
+
+    private static final String TABLE_TRANSACTION = "table_transactions";
+    private static final String COL_IDTRANS = "id_trans";
+    private static final String COL_MONTANT = "montant";
+    private static final String COL_INTERLOCUTEUR = "interlocuteur";
+    private static final String COL_RECECPTION = "reception";
+    private static final String COL_DATE = "date";
+
+    private static final String CREATE_TRANSACTION = "CREATE TABLE " + TABLE_TRANSACTION + " ("
+            + COL_IDTRANS + " INTEGER PRIMARY KEY, "
+            + COL_MONTANT + " DOUBLE, "
+            + COL_INTERLOCUTEUR + " TEXT NOT NULL, "
+            + COL_RECECPTION + " INTEGER, "
+            + COL_DATE + " TEXT );";
+
+
+
+
     public MaBaseSQLite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -43,6 +61,7 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
         //on créé la table à partir de la requête écrite dans la variable CREATE_PARAMETRE
         db.execSQL(CREATE_PARAMETRE);
         db.execSQL(CREATE_MESSAGE);
+        db.execSQL(CREATE_TRANSACTION);
     }
 
     @Override
@@ -51,6 +70,7 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
         //comme ça lorsque je change la version les id repartent de 0
         db.execSQL("DROP TABLE " + TABLE_PARAMETRES + ";");
         db.execSQL("DROP TABLE " + TABLE_MESSAGE + ";");
+        db.execSQL("DROP TABLE " + TABLE_TRANSACTION + ";");
         onCreate(db);
     }
 

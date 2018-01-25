@@ -19,11 +19,11 @@ import fr.ptut.treflerie.database.*;
 
 public class FragmentCompte extends Fragment{
 
-    View myView;
-    ParametreManager parametreManager;
+    private View myView;
+    private ParametreManager parametreManager;
     private MessageManager messageManager;
-    TextView solde;
-    Button bactualiser;
+    private TextView solde;
+    private Button bactualiser;
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -32,34 +32,47 @@ public class FragmentCompte extends Fragment{
         messageManager = new MessageManager(this.getActivity().getBaseContext());
         parametreManager.open();
         messageManager.open();
+
         TextView nom = myView.findViewById(R.id.compte_nom);
         solde = myView.findViewById(R.id.compte_solde);
-        Parametre param = parametreManager.getParametre();
-        nom.setText(param.getNom());
-        solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
-        new SmsSender(Configuration.SMS_SOLDE);
 
-        bactualiser = myView.findViewById(R.id.compte_actualiser);
-        bactualiser.setClickable(true);
-        bactualiser.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                paramSolde();
+        if(parametreManager.nombreDeLigne() != 1 ){
+            initialisation();
+        }else{
+            Parametre param = parametreManager.getParametre();
+            nom.setText(param.getNom());
+            if (messageManager.nombreDeLigne() > 0) {
+                solde.setText(messageManager.getMessageByTag("solde").getLibelle()+ " Trèfles");
             }
-        });
+            new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
 
-
+            bactualiser = myView.findViewById(R.id.compte_actualiser);
+            bactualiser.setClickable(true);
+            bactualiser.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    paramSolde();
+                }
+            });
+        }
         return myView;
     }
 
     public void paramSolde(){
-        String[] items = messageManager.getMessageByTag("solde").getLibelle().split(" ");
-        Double montant = Double.parseDouble(items[0].replace(",", "."));
-        if(montant > 0) {
-            solde.setText(Double.toString(montant).replace(".", ",") + " Trèfles");
-        }else{
-            solde.setText(montant + "Trèfle");
+        if (messageManager.nombreDeLigne() > 0) {
+            String[] items = messageManager.getMessageByTag("solde").getLibelle().split(" ");
+            Double montant = Double.parseDouble(items[0].replace(",", "."));
+            if (montant > 0) {
+                solde.setText(Double.toString(montant).replace(".", ",") + " Trèfles");
+            } else {
+                solde.setText(montant + "Trèfle");
+            }
         }
+    }
+
+    public void initialisation(){
+        Toast.makeText(myView.getContext(), "INITIALISATION", Toast.LENGTH_SHORT).show();
+        parametreManager.insertParametre(new Parametre());
     }
 
 }

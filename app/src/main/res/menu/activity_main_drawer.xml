@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:andoid="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">$
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_compte"
             android:icon="@drawable/ic_icon_account"
             android:textColor="@color/black"
             android:title="@string/nav_compte" />
         <item android:title="">
-        <menu>
-        <item
-            android:id="@+id/nav_derniere"
-            android:icon="@drawable/ic_icon_recap"
-            android:textColor="@color/black"
-            android:title="@string/nav_derniere" />
-        <item
-            android:id="@+id/nav_mois"
-            android:icon="@drawable/ic_icon_recap"
-            android:textColor="@color/black"
-            android:title="@string/nav_mois" />
-        <item
-            android:id="@+id/nav_nouvelle"
-            android:icon="@drawable/ic_icon_transaction"
-            android:textColor="@color/black"
-            android:title="@string/nav_nouvelle" />
-
-        </menu>
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_nouvelle"
+                        android:icon="@drawable/ic_icon_transaction"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_nouvelle" />
+                    <item
+                        android:id="@+id/nav_derniere"
+                        android:icon="@drawable/ic_icon_recap"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_derniere" />
+                    <item
+                        android:id="@+id/nav_mois"
+                        android:icon="@drawable/ic_icon_mois"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_mois" />
+                    <item
+                        android:id="@+id/nav_historique"
+                        android:icon="@drawable/ic_icon_historique"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_historique" />
+                </group>
+            </menu>
         </item>
+        <item android:title="">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_aide"
+                        android:icon="@drawable/ic_icon_help"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_aide"
+                        />
+                    <item
+                        android:id="@+id/nav_parametre"
+                        android:icon="@drawable/ic_icon_settings"
+                        android:textColor="@color/black"
+                        android:title="@string/nav_settings" />
+                </group>
+            </menu>
+        </item>
+
+
     </group>
-
-
-    <item android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_aide"
-                android:icon="@drawable/ic_icon_help"
-                android:textColor="@color/black"
-                android:title="@string/nav_aide"
-                />
-            <item
-                android:id="@+id/nav_parametre"
-                android:icon="@drawable/ic_icon_settings"
-                android:textColor="@color/black"
-                android:title="@string/nav_settings" />
-
-        </menu>
-    </item>
 
 </menu>

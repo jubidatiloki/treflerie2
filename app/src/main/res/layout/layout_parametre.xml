@@ -1,57 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lay_param"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/gradient">
 
 
     <TextView
-        android:id="@+id/l_param_nom"
+        android:id="@+id/param_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center|top"
+        android:text="Paramètres"
         android:textColor="@color/black"
-        android:text=" "
-        android:textSize="25dp" />
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <TextView
-        android:id="@+id/l_param_telServeur"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/l_param_nom"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:textColor="@color/black"
-        android:text="nummero serveur"
-        android:textSize="25dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom d'utilisateur"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/l_param_montantMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/l_param_telServeur"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:textColor="@color/black"
-        android:text=""
-        android:textSize="25dp" />
+        <EditText
+            android:id="@+id/f_param_nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/param_header"
+            android:layout_centerHorizontal="true"
+            android:gravity="left"
+            android:hint="nom d'utilisateur"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numéro de la Tréflerie"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/f_param_telServeur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/f_param_nom"
+            android:layout_centerHorizontal="true"
+            android:gravity="left"
+            android:hint="téléphone du serveur"
+            android:imeOptions="actionDone"
+            android:inputType="phone"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Montant maximale d'une transaction"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/f_param_montantMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/f_param_telServeur"
+            android:layout_centerHorizontal="true"
+            android:gravity="left"
+            android:hint="limite de montant max"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+    </LinearLayout>
 
 
     <Button
-        android:id="@+id/b_param_modifier"
+        android:id="@+id/b_param_enregistrer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="20dp"
+        android:text="enregistrer"
         android:textColor="@color/black"
-        android:text="modifier"
-        android:textSize="25dp"
-        android:layout_marginTop="400dp"
-        android:layout_centerHorizontal="true"/>
-
-
-</RelativeLayout>
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

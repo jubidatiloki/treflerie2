@@ -2,54 +2,60 @@ package fr.ptut.treflerie.model;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.ptut.treflerie.R;
+import fr.ptut.treflerie.controller.DoneOnEditorActionListener;
 import fr.ptut.treflerie.database.Parametre;
 import fr.ptut.treflerie.database.ParametreManager;
 
 /**
- * Created by benja on 07/12/2017.
+ * Created by benja on 12/12/2017.
  */
 
 public class FragmentParametre extends Fragment{
 
-    View myView;
+    View myViewModif;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.layout_parametre, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        myViewModif = inflater.inflate(R.layout.layout_parametre, container, false);
+        final EditText formNom = myViewModif.findViewById(R.id.f_param_nom);
+        final EditText formTelServeur = myViewModif.findViewById(R.id.f_param_telServeur);
+        final EditText formMontantMax = myViewModif.findViewById(R.id.f_param_montantMax);
+        final ParametreManager parametreManager = new ParametreManager(this.getActivity().getBaseContext());
 
-        TextView labelNom = myView.findViewById(R.id.l_param_nom);
-        TextView labelTelServeur = myView.findViewById(R.id.l_param_telServeur);
-        TextView labelMontantMax = myView.findViewById(R.id.l_param_montantMax);
-        ParametreManager parametreManager = new ParametreManager(this.getActivity().getBaseContext());
         parametreManager.open();
-        Parametre param = parametreManager.getParametre();
-        labelNom.setText("nom d'utilisateur : " + param.getNom());
-        labelTelServeur.setText("numéro du serveur : " + param.getTelServeur());
-        labelMontantMax.setText("limite montant max par transaction : " + Double.toString(param.getMontantMax()) + " Trèfles");
 
+        formNom.setText(parametreManager.getParametre().getNom());
+        formNom.setOnEditorActionListener(new DoneOnEditorActionListener());
+        formTelServeur.setText(parametreManager.getParametre().getTelServeur(),TextView.BufferType.EDITABLE);
+        formTelServeur.setOnEditorActionListener(new DoneOnEditorActionListener());
+        formMontantMax.setText(Double.toString(parametreManager.getParametre().getMontantMax()),TextView.BufferType.EDITABLE);
+        formMontantMax.setOnEditorActionListener(new DoneOnEditorActionListener());
 
-
-        Button bmodifier = myView.findViewById(R.id.b_param_modifier);
-        bmodifier.setOnClickListener(new View.OnClickListener() {
+        Button benregistrer = myViewModif.findViewById(R.id.b_param_enregistrer);
+        benregistrer.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentParametreModif()).commit();
+                if(formTelServeur.getText().toString().equals("") || formMontantMax.getText().toString().equals("") || formNom.getText().toString().equals("")){
+                    Toast.makeText(myViewModif.getContext(), "les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
+                }
+
+                Parametre paramOrigine = parametreManager.getParametre();
+                Parametre param = new Parametre(paramOrigine.getNumCompte(), formTelServeur.getText().toString(), Double.parseDouble(formMontantMax.getText().toString()), formNom.getText().toString(), paramOrigine.getSolde());
+                parametreManager.updateParametre(param);
+
             }
         });
 
-
-        return myView;
+        return myViewModif;
     }
 }

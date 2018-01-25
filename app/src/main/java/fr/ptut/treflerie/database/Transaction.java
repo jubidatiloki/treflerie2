@@ -1,7 +1,5 @@
 package fr.ptut.treflerie.database;
 
-import java.util.Date;
-
 /**
  * Created by benja on 08/12/2017.
  */
@@ -10,39 +8,38 @@ public class Transaction {
 
     private int idTransaction;
     private double montant;
-    private int expediteur;
-    private int destinataire;
+    private String interlocuteur;      //échangiste pour logan
+    private int reception;          // 1 pour oui, 0 pour non
     private String date;
 
-    //un tel 0 signifiera son propre tél
+    public Transaction(){};
 
-    public Transaction(){}
-
-    public Transaction(double montant, int expediteur, int destinataire, String date) {
+    public Transaction(int idTransaction, double montant, String interlocuteur, int reception, String date) {
+        this.idTransaction = idTransaction;
         this.montant = montant;
-        this.expediteur = expediteur;
-        this.destinataire = destinataire;
+        this.interlocuteur = interlocuteur;
+        this.reception = reception;
         this.date = date;
     }
 
     public int getIdTransaction() {
-        return this.idTransaction;
+        return idTransaction;
     }
 
     public double getMontant() {
-        return this.montant;
+        return montant;
     }
 
-    public int getExpediteur() {
-        return this.expediteur;
+    public String getInterlocuteur() {
+        return interlocuteur;
     }
 
-    public int getDestinataire() {
-        return this.destinataire;
+    public int getReception() {
+        return reception;
     }
 
     public String getDate() {
-        return this.date;
+        return date;
     }
 
     public void setIdTransaction(int idTransaction) {
@@ -53,12 +50,12 @@ public class Transaction {
         this.montant = montant;
     }
 
-    public void setExpediteur(int expediteur) {
-        this.expediteur = expediteur;
+    public void setInterlocuteur(String interlocuteur) {
+        this.interlocuteur = interlocuteur;
     }
 
-    public void setDestinataire(int destinataire) {
-        this.destinataire = destinataire;
+    public void setReception(int recu) {
+        this.reception = recu;
     }
 
     public void setDate(String date) {
@@ -70,8 +67,8 @@ public class Transaction {
         return "Transaction{" +
                 "idTransaction=" + idTransaction +
                 ", montant=" + montant +
-                ", expediteur=" + expediteur +
-                ", destinataire=" + destinataire +
+                ", interlocuteur='" + interlocuteur + '\'' +
+                ", reception='" + reception + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }

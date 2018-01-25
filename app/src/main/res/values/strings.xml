@@ -9,6 +9,7 @@
     <string name="nav_solde">Consulter solde</string>
     <string name="nav_derniere">Dernière transaction</string>
     <string name="nav_mois">Bilan derniers mois</string>
+    <string name="nav_historique">Historique</string>
     <string name="nav_nouvelle">Nouvelle transaction</string>
     <string name="nav_compte">Mon compte</string>
     <string name="nav_aide">Aide</string>

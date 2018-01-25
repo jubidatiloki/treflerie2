@@ -19,7 +19,7 @@ public class Parametre {
     public Parametre(){
         this.telServeur = Configuration.TEL_SERVEUR_DEFAUT;
         this.montantMax = Configuration.MONTANT_MAX_DEFAUT;
-        this.numCompte = 33;
+        this.numCompte = 0;
         this.nom = Configuration.NOM_DEFAUT;
         this.solde = Configuration.SOLDE_DEFAUT;
     }
