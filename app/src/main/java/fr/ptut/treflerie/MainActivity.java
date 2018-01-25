@@ -163,8 +163,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
         }
 
-        // Show left seconds in send button.
-        //Toast.makeText(this,timer,Toast.LENGTH_SHORT).show();
     }
 
 
