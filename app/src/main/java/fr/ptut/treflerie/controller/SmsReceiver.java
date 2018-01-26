@@ -43,7 +43,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     messageBody.replace("é", "e");
                     final String phoneNumber = messages[0].getDisplayOriginatingAddress();
 
-                    if(phoneNumber.equals(Configuration.TEL_SERVEUR_DEFAUT)) {
+                    if(phoneNumber.equals(parametreManager.getParametre().getTelServeur())) {
                         receiver.onReceive(context, intent, messageBody);
 
                     }

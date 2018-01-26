@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ParametreManager parametreManager = new ParametreManager(this);
     private MessageManager messageManager = new MessageManager(this);
+    private TransactionManager transactionManager = new TransactionManager(this);
     private Toolbar toolbar;
+    private int temp;
+    boolean kill = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         parametreManager.open();
         messageManager.open();
+        transactionManager.open();
+
+        temp = transactionManager.nombreDeLigne();
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
@@ -67,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //---------------------------------------//
-        JabberReceiver jr = new JabberReceiver(this.getApplicationContext(), this.getIntent());
-        jr.start();
-       // jr.send("V?");
+        //JabberReceiver jr = new JabberReceiver(this.getApplicationContext(), this.getIntent());
+        //jr.start();
+        // jr.send("V?");
         //---------------------------------------//
 
     }
@@ -151,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /* This method will be invoked when CountDownTimer finish. */
     public void onCountDownTimerFinishEvent()
     {
-
     }
 
     /* This method will be invoked when CountDownTimer tick event happened.*/
@@ -163,15 +168,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String timer = "Temps restant " + leftSeconds + " (s)";
         System.out.println("TIMER : " + leftSeconds);
 
-        if(leftSeconds==1) {
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Problème rencontré");
-            alertDialog.setMessage("Le serveur  est indisponible. Nous nous excusons pour la gêne occasionnée.");
-            alertDialog.show();
+        if(kill == false) {
+            if (temp != transactionManager.nombreDeLigne()) {
+                temp = transactionManager.nombreDeLigne();
+                kill = true;
+            }
+        }
+        if(leftSeconds <= 1){
+            if(kill){
+                kill = false;
+            }else{
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Problème rencontré");
+                alertDialog.setMessage("Le serveur  est indisponible. Nous nous excusons pour la gêne occasionnée.");
+                alertDialog.show();
+            }
         }
 
     }
-
-
-
 }

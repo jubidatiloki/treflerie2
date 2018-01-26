@@ -167,7 +167,7 @@ public class FragmentNouvelle extends Fragment{
                     if(montant >= montantSaisi){
                         double montantMax = parametreManager.getParametre().getMontantMax();
                         if(montantSaisi <= montantMax ) {
-                            SmsManager.getDefault().sendTextMessage(Configuration.TEL_SERVEUR_DEFAUT, null,message, null, null);
+                            SmsManager.getDefault().sendTextMessage(parametreManager.getParametre().getTelServeur(), null,message, null, null);
                             myCountDownTimer.start();
                             Toast.makeText(getActivity().getBaseContext(),"Transaction en cours... Veuillez patienter",Toast.LENGTH_LONG).show();
                         } else {

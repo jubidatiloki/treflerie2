@@ -46,13 +46,14 @@ public class FragmentParametre extends Fragment{
         benregistrer.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 if(formTelServeur.getText().toString().equals("") || formMontantMax.getText().toString().equals("")){
-                    Toast.makeText(myViewModif.getContext(), "Les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(myViewModif.getContext(), "Les formulaires ne doivent pas être vides.", Toast.LENGTH_LONG).show();
+                }else if(Double.parseDouble(formMontantMax.getText().toString())<= 0  || Double.parseDouble(formMontantMax.getText().toString()) > 250){
+                    Toast.makeText(myViewModif.getContext(), "Le montant max doit être compris entre 0 et 250 Trèfles.", Toast.LENGTH_LONG).show();
                 }else{
                     Parametre paramOrigine = parametreManager.getParametre();
                     Parametre param = new Parametre(paramOrigine.getNumCompte(), formTelServeur.getText().toString(), Double.parseDouble(formMontantMax.getText().toString()), formNom.getText().toString(), paramOrigine.getSolde());
                     parametreManager.updateParametre(param);
                     Toast.makeText(myViewModif.getContext(), "Les modifications ont bien été effectuées.", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
