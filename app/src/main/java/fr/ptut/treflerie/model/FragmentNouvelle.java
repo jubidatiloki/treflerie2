@@ -216,5 +216,5 @@ public class FragmentNouvelle extends Fragment{
     public MyCountDownTimer getTimer(){
         return this.myCountDownTimer;
     }
-    
+
 }
