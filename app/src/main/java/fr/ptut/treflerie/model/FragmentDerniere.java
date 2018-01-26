@@ -81,7 +81,7 @@ public class FragmentDerniere extends Fragment{
                 monDest.setText("Envoyé à : " + items[2] + " " + items[3] + " (compte n°" + items[1] + ")");
             }
 
-            monMontant.setText("Le montant de " + items[4] + "Trèfles");
+            monMontant.setText("Montant : " + items[4] + "Trèfles");
 
 
             monLabel.setVisibility(View.INVISIBLE);

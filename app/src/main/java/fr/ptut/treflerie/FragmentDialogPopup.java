@@ -41,23 +41,23 @@ public class FragmentDialogPopup extends DialogFragment {
         String tag = getTag();
         switch (tag){
             case "infobulle_aide":
-                builder.setTitle("Explications - aide");
+                builder.setTitle("Explications - Aide");
                 builder.setMessage(R.string.infobulle_aide);
                 break;
             case "infobulle_compte":
-                builder.setTitle("Explications - compte");
+                builder.setTitle("Explications - Compte");
                 builder.setMessage(R.string.infobulle_compte);
                 break;
             case "infobulle_derniere":
-                builder.setTitle("Explications - dernière transaction");
+                builder.setTitle("Explications - Dernière transaction");
                 builder.setMessage(R.string.infobulle_derniere);
                 break;
             case "infobulle_mois":
-                builder.setTitle("Explications - bilan");
+                builder.setTitle("Explications - Bilan");
                 builder.setMessage(R.string.infobulle_mois);
                 break;
             case "infobulle_nouvelle":
-                builder.setTitle("Explications - nouvelle transaction");
+                builder.setTitle("Explications - Nouvelle transaction");
                 builder.setMessage(R.string.infobulle_nouvelle);
                 break;
             default:

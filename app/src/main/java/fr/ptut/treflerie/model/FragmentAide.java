@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import fr.ptut.treflerie.FragmentDialogPopup;
 import fr.ptut.treflerie.R;
+import fr.ptut.treflerie.controller.Configuration;
 
 /**
  * Created by benja on 07/12/2017.
@@ -73,7 +74,7 @@ public class FragmentAide extends Fragment{
     }
 
     protected void envoiMail() {
-        String[] TO = {"benjamin.tytgat@etu.unilim.fr"};
+        String[] TO = {Configuration.MAIL_DEFAUT};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 

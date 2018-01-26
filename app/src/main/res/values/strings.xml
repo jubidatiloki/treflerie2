@@ -16,10 +16,10 @@
     <string name="nav_settings">Paramètres</string>
 
 
-    <string name="infobulle_aide">Il vous suffit de cliquer sur les liens ci-dessus afin de contacter le service d\'aide de la Trèflerie.</string>
-    <string name="infobulle_compte">Vous êtes sur la page de votre compte, vous pouvez y consulter votre solde, ainsi que modifier certains de vos paramètres.</string>
-    <string name="infobulle_derniere">Si vous n\'avez effectué aucune transaction, vous verrez un msg l\'indiquant. Sinon vous verrez la date, la personne ainsi que le montant échangé lors de votre dernière transaction.</string>
-    <string name="infobulle_mois">Vous pouvez consulter la balance des transactions effectuées lors des deux derniers mois. Vous pouvais également consulter les détails dans l\'historique des transactions effectué.</string>
-    <string name="infobulle_nouvelle">Prenez garde à posséder suffisamment de trèfles sur votre compte, avant de faire une transaction. De plus vous ne pouvez dépasser la limite de trèfles définie avec ce téléphone (250T par défaut).</string>
+    <string name="infobulle_aide">Si vous rencontrez un quelconque problème, vous pouvez contacter l\'association La Trèflerie grâce aux différents boutons affichés ici. Veuillez être le plus précis possible dans la description du problème rencontré. </string>
+    <string name="infobulle_compte">Vous êtes sur la page de votre compte, vous pouvez y consulter votre solde. Vous pouvez actualiser votre solde en cliquant sur le bouton en bas de l\'écran.</string>
+    <string name="infobulle_derniere">Si vous n\'avez effectué aucune transaction, vous verrez un message l\'indiquant. Sinon vous verrez la date, la personne avec qui vous avez réalisé la transaction, ainsi que le montant échangé lors de votre dernière transaction.</string>
+    <string name="infobulle_mois">Vous pouvez consulter la balance des transactions effectuées lors des deux derniers mois. Vous pouvez également consulter les détails dans l\'historique des transactions effectuées.</string>
+    <string name="infobulle_nouvelle">Prenez garde à posséder suffisamment de trèfles sur votre compte, avant de faire une transaction. De plus vous ne pouvez pas dépasser la limite de trèfles définie avec ce téléphone (250T par défaut).</string>
     
 </resources>

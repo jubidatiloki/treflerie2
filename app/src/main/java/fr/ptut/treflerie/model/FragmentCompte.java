@@ -1,9 +1,11 @@
 package fr.ptut.treflerie.model;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +53,8 @@ public class FragmentCompte extends Fragment{
             }
         });
 
-        if(parametreManager.nombreDeLigne() != 1 ){
+
+        if(parametreManager.nombreDeLigne() == 0 ){
             initialisation();
         }else {
             Parametre param = parametreManager.getParametre();
@@ -93,7 +96,12 @@ public class FragmentCompte extends Fragment{
     }
 
     public void initialisation(){
-
+        Toast.makeText(myView.getContext(), "initialisation", Toast.LENGTH_SHORT).show();
+        parametreManager.insertParametre(new Parametre());
+        messageManager.insertMessage(new Message("solde",Configuration.MESSAGE_VIDE_DEFAUT ));
+        messageManager.insertMessage(new Message("derniere",Configuration.MESSAGE_VIDE_DEFAUT));
+        messageManager.insertMessage(new Message("mois", Configuration.MESSAGE_VIDE_DEFAUT));
+        messageManager.insertMessage(new Message("nouvelle", Configuration.MESSAGE_VIDE_DEFAUT));
         parametreManager.insertParametre(new Parametre());
         new SmsSender(Configuration.SMS_SOLDE, myView.getContext());
         nom.setText("Paramètrage du compte en cours, en attente du serveur");

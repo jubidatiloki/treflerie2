@@ -45,14 +45,15 @@ public class FragmentParametre extends Fragment{
         Button benregistrer = myViewModif.findViewById(R.id.b_param_enregistrer);
         benregistrer.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                if(formTelServeur.getText().toString().equals("") || formMontantMax.getText().toString().equals("") || formNom.getText().toString().equals("")){
-                    Toast.makeText(myViewModif.getContext(), "les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
+                if(formTelServeur.getText().toString().equals("") || formMontantMax.getText().toString().equals("")){
+                    Toast.makeText(myViewModif.getContext(), "Les formulaires ne doivent pas être vides!!", Toast.LENGTH_LONG).show();
+                }else{
+                    Parametre paramOrigine = parametreManager.getParametre();
+                    Parametre param = new Parametre(paramOrigine.getNumCompte(), formTelServeur.getText().toString(), Double.parseDouble(formMontantMax.getText().toString()), formNom.getText().toString(), paramOrigine.getSolde());
+                    parametreManager.updateParametre(param);
+                    Toast.makeText(myViewModif.getContext(), "Les modifications ont bien été effectuées.", Toast.LENGTH_SHORT).show();
+
                 }
-
-                Parametre paramOrigine = parametreManager.getParametre();
-                Parametre param = new Parametre(paramOrigine.getNumCompte(), formTelServeur.getText().toString(), Double.parseDouble(formMontantMax.getText().toString()), formNom.getText().toString(), paramOrigine.getSolde());
-                parametreManager.updateParametre(param);
-
             }
         });
 

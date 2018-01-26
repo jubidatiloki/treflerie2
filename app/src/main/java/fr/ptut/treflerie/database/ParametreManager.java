@@ -70,6 +70,7 @@ public class ParametreManager {
         //La mise à jour d'un livre dans la BDD fonctionne plus ou moins comme une insertion
         //il faut simple préciser quelle livre on doit mettre à jour grâce à l'ID
         ContentValues values = new ContentValues();
+        values.put(COL_NUM_COMPTE, parametre.getNumCompte());
         values.put(COL_TEL_SERVEUR, parametre.getTelServeur());
         values.put(COL_MONTANT_MAX, parametre.getMontantMax());
         values.put(COL_NOM, parametre.getNom());

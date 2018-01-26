@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class FragmentHistorique extends Fragment{
     private TransactionAdapter transactionAdapter;
     private TransactionManager transactionManager;
     private RecyclerView.LayoutManager layoutManager;
+    private TextView historique_vide;
 
 
     @Override
@@ -38,7 +40,7 @@ public class FragmentHistorique extends Fragment{
         myView = inflater.inflate(R.layout.layout_historique, container, false);
         transactionManager = new TransactionManager(this.getActivity().getBaseContext());
         transactionManager.open();
-
+        historique_vide = myView.findViewById(R.id.historique_vide);
 
         recyclerView = myView.findViewById(R.id.recycler_view_transaction);
         recyclerView.setHasFixedSize(true);
@@ -65,8 +67,6 @@ public class FragmentHistorique extends Fragment{
         //recyclerView.addItemDecoration(new MyDividerItemDecoration(myView.getContext(), LinearLayoutManager.HORIZONTAL, 8));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
-
         prepareTransactionData();
 
 
@@ -75,10 +75,16 @@ public class FragmentHistorique extends Fragment{
 
     private void prepareTransactionData() {
         Transaction transaction;
-        for(int i=transactionManager.nombreDeLigne()-1; i>0; i--){
-            transaction = transactionManager.getTransactionById(i);
-            transactionsList.add(transaction);
+        if(transactionManager.nombreDeLigne()==0){
+            historique_vide.setText("Il n'y a aucune transaction d'enregistrée.");
+        }else{
+            for(int i=transactionManager.nombreDeLigne()-1; i>0; i--){
+                transaction = transactionManager.getTransactionById(i);
+                transactionsList.add(transaction);
+            }
+            historique_vide.setText("");
         }
+
         transactionAdapter.notifyDataSetChanged();
 
     }
